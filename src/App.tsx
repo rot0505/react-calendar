@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function App() {
+import Calendar from 'pages/Calendar';
+import { useActions } from './hooks';
+
+const App: React.FC = () => {
+  const { getEvents } = useActions();
+
+  useEffect(() => {
+    getEvents();
+  }, []);
+
   return (
-    <div className="App">
-    </div>
+    <Calendar />
   );
 }
 

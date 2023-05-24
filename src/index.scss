@@ -1,13 +1,73 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --color-text: #434141;
+  --primary: #1a73e8;
+  --secondary: rgb(24, 90, 188);
+  --secondary-7: rgba(24, 90, 188, 0.7);
+  --color-placeholder: rgba(0, 0, 0, 0.5);
+  --background-color-calendar-header: #ffffff;
+}
+
+.button {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: .875rem;
+  padding: 0 12px;
+  color: rgb(60, 64, 67);
+  background-color: #fff;
+  letter-spacing: .0107142857em;
+  height: 36px;
+
+  &:hover {
+    background-color: darken(#fff, 4%);
+  }
+
+  &:active {
+    background-color: #dadce0;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(251 251 251 / 27%);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: inherit;
+}
+
+::-webkit-scrollbar-thumb {
+  border: none;
+  box-shadow: none;
+  background: #cbcccf;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(130, 130, 130);
 }
