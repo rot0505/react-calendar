@@ -18,6 +18,25 @@ const Calendar: React.FC = ({ }) => {
         selectedDay={state.selectedDay}
       />
       <section className="calendar">
+        {/* {state.mode === 'year' && (
+          <YearCalendar
+            selectedDay={state.selectedDay}
+            selectedMonth={state.selectedMonth}
+            monthsNames={state.monthsNames}
+            weekDaysNames={state.weekDaysNames}
+            calendarDaysOfYear={state.calendarDaysOfYear}
+            onChangeState={functions.onChangeState}
+          />
+        )}
+
+        {state.mode === 'month' && (
+          <MonthCalendar
+            weekDaysNames={state.weekDaysNames}
+            calendarDaysOfMonth={state.calendarDaysOfMonth}
+            selectedMonth={state.selectedMonth}
+            onClickArrow={functions.onClickArrow}
+          />
+        )} */}
 
         {state.mode === 'week' && (
           <CalendarWeek

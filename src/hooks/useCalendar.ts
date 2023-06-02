@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { IDirections, IModes } from 'types/date';
 
 import {
-  getMonthesNames,
+  getMonthsNames,
   createMonth,
   getWeekDaysNames,
   createDate,
@@ -41,7 +41,7 @@ export const useCalendar = ({
     getYearsInterval(selectedDay.year)
   );
 
-  const monthesNames = useMemo(() => getMonthesNames(selectedDay.date, locale), [selectedDay]);
+  const monthsNames = useMemo(() => getMonthsNames(selectedDay.date, locale), [selectedDay]);
   const weekDaysNames = useMemo(() => getWeekDaysNames(firstWeekDayNumber, locale), []);
   const weekDays = useMemo(() => selectedWeek.createWeekDays(), [selectedWeek.dayNumber, selectedYear, selectedMonth.monthIndex]);
   const displayedDate = useMemo(() => {
@@ -49,7 +49,7 @@ export const useCalendar = ({
       return `${selectedYear}`;
     }
     if (mode === 'month') {
-      return `${monthesNames[selectedMonth.monthIndex].month} ${selectedYear}`;
+      return `${monthsNames[selectedMonth.monthIndex].month} ${selectedYear}`;
     }
     return selectedWeek.displayedMonth;
   }, [selectedYear, selectedMonth.monthIndex, selectedWeek.dayNumber, mode]);
@@ -99,6 +99,19 @@ export const useCalendar = ({
       const newSelectedWeekDate = new Date(selectedWeek.year, selectedWeek.monthIndex, dayNumber);
       onChangeState(newSelectedWeekDate);
     }
+
+    if (mode === 'years') {
+      const years = selectedYearsInterval[0] + (direction === 'left' ? -10 : 10);
+      return setSelectedYearsInterval(getYearsInterval(years));
+    }
+
+    if (mode === 'months') {
+      const year = selectedYear + (direction === 'left' ? -1 : 1);
+      if (!selectedYearsInterval.includes(year)) {
+        setSelectedYearsInterval(getYearsInterval(year));
+      }
+      return setSelectedYear(year);
+    }
   };
 
   const setSelectedMonthByIndex = (monthIndex: number) => {
@@ -113,7 +126,7 @@ export const useCalendar = ({
       displayedDate,
       weekDaysNames,
       weekDays,
-      monthesNames,
+      monthsNames,
       selectedDay,
       selectedMonth,
       selectedYear,

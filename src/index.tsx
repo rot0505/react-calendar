@@ -6,15 +6,21 @@ import { store } from 'store/store';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ModalProvider } from 'providers/ModalProvider';
+import { PopupProvider } from 'providers/PopupProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <ModalProvider>
+      <PopupProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </PopupProvider>
+    </ModalProvider>
   </Provider>
 );
 

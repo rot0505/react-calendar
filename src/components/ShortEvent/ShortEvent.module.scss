@@ -1,0 +1,36 @@
+.event {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  font-size: 12px;
+  height: 22px;
+  width: 98%;
+  padding: 0 8px;
+  line-height: 20px;
+  border-radius: 4px;
+  overflow: hidden;
+  color: rgb(60, 64, 67);
+  margin-bottom: 3px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: whitesmoke;
+  }
+
+  &_circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 6px;
+  }
+
+  &_time {
+    font-weight: 400;
+    margin-right: 4px;
+  }
+
+  &_title {
+    font-weight: 500;
+  }
+}

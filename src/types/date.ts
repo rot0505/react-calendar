@@ -18,6 +18,6 @@ export interface IMonth {
 
 export type IMonthDay = ReturnType<typeof getDay>;
 
-export type IModes = "week" | "month" | "year";
+export type IModes = "week" | "month" | "months" | "year" | "years";
 
 export type IDirections = "left" | "right" | "today";

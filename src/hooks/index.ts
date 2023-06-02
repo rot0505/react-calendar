@@ -4,6 +4,9 @@ import { useModal } from './useModal';
 import { useTypedSelector } from './useTypedSelector';
 import { useCalendar } from './useCalendar';
 import { usePopup } from './usePopup';
+import { useThrottle } from './useThrottle';
+import { useForm } from './useForm';
+import { useWindowSize } from './useWindowSize';
 
 export {
   useActions,
@@ -11,5 +14,8 @@ export {
   useModal,
   useTypedSelector,
   useCalendar,
-  usePopup
+  usePopup,
+  useThrottle,
+  useForm,
+  useWindowSize
 }

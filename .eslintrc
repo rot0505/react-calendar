@@ -26,6 +26,12 @@
     "import/prefer-default-export": 0,
     "@typescript-eslint/no-use-before-define": 0,
     "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      {
+        "ts-ignore": "allow-with-description"
+      }
+    ],
     "import/no-extraneous-dependencies": 0,
     "@typescript-eslint/no-shadow": 0,
     "indent": [
