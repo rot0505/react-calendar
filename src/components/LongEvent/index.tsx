@@ -1,8 +1,8 @@
 import React, { MouseEvent } from "react";
+
 import { usePopup } from "hooks/usePopup";
 import { IEvent } from "types/event";
 import { formatDate } from "utils/date";
-
 import styles from './LongEvent.module.scss';
 
 interface ILongEventProps {

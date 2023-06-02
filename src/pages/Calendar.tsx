@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { useCalendar } from 'hooks';
 import Header from 'components/Header';
 import CalendarWeek from 'components/CalendarWeek';
-
+import CalendarYear from 'components/CalendarYear';
+import CalendarMonth from 'components/CalendarMonth';
 import './Calendar.scss';
 
 const Calendar: React.FC = ({ }) => {
@@ -18,8 +20,8 @@ const Calendar: React.FC = ({ }) => {
         selectedDay={state.selectedDay}
       />
       <section className="calendar">
-        {/* {state.mode === 'year' && (
-          <YearCalendar
+        {state.mode === 'year' && (
+          <CalendarYear
             selectedDay={state.selectedDay}
             selectedMonth={state.selectedMonth}
             monthsNames={state.monthsNames}
@@ -30,13 +32,13 @@ const Calendar: React.FC = ({ }) => {
         )}
 
         {state.mode === 'month' && (
-          <MonthCalendar
+          <CalendarMonth
             weekDaysNames={state.weekDaysNames}
             calendarDaysOfMonth={state.calendarDaysOfMonth}
             selectedMonth={state.selectedMonth}
             onClickArrow={functions.onClickArrow}
           />
-        )} */}
+        )}
 
         {state.mode === 'week' && (
           <CalendarWeek

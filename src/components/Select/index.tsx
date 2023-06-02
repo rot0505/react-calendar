@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
+
 import { useClickOutside } from "hooks/useClickOutside";
 import SelectOption from "./SelectOption";
 import { IModes } from "types/date";
-
 import styles from './Select.module.scss';
 
 interface SelectProps {

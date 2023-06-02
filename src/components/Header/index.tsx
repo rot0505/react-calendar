@@ -1,9 +1,9 @@
 import React from 'react';
+
 import Select from '../Select';
 import { useModal } from 'hooks';
 import { IDirections, IModes, TDate } from 'types/date';
 import { createDate, getNextStartMinutes, shmoment } from 'utils/date';
-
 import styles from './Header.module.scss';
 
 interface IHeaderProps {

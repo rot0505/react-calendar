@@ -7,7 +7,6 @@ import { createEventSchema } from 'validation-schemas/index';
 import { IModalValues } from './types';
 import { TPartialEvent } from 'types/event';
 import { TextField, DatePicker, TimePicker, ColorPicker } from 'components/FormElements';
-
 import styles from './ModalFormEvent.module.scss';
 
 interface IModalFormEventProps {

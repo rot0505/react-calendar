@@ -1,7 +1,7 @@
 import React from "react";
+
 import Day from "../Day";
 import { IMonthDay, IWeekDay, TMonth } from "types/date";
-
 import styles from './Days.module.scss';
 
 interface DaysProps {

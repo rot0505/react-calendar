@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
+
 import { colors } from "./colors";
 import { useClickOutside } from "hooks/index";
 import ColorOption from "./ColorOption";
-
 import styles from './ColorPicker.module.scss';
 
 interface IColorPickerProps {

@@ -1,11 +1,11 @@
 import React, { MouseEvent, useRef, useState } from 'react';
+
 import { checkIsToday, shmoment } from 'utils/date';
 import Event from '../Event';
 import TimeLine from '../TimeLine';
 import { IEvent } from 'types/event';
 import { getStyledByPositionXForEvent, getStyledByPostionYForEvent } from 'utils/helpers';
 import { useModal } from 'hooks/useModal';
-
 import styles from './Hour.module.scss';
 
 interface IHourProps {

@@ -1,8 +1,8 @@
 import React from 'react';
+
 import Hour from '../Hour';
 import { IEvent } from 'types/event';
 import { IMonthDay } from 'types/date';
-
 import styles from './Day.module.scss';
 
 interface IDayProps {
@@ -33,7 +33,7 @@ const Day: React.FC<IDayProps> = ({
           (event) => new Date(event.start).getHours() === hour
         );
 
-        const eventsFromPrevDay = prevDayEvents.filter((_) => 0 === hour);
+        const eventsFromPrevDay = prevDayEvents.filter(() => 0 === hour);
 
         const eventsToNextDay = nextDayEvents.filter(
           (event) => new Date(event.start).getHours() === hour

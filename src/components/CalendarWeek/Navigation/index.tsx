@@ -1,8 +1,8 @@
 import React from 'react';
+
 import { checkIsToday, checkIsPast } from 'utils/date';
 import { IMonthDay, IWeekDay } from 'types/date';
 import { useModal } from 'hooks/useModal';
-
 import styles from './Navigation.module.scss';
 
 interface INavigationProps {

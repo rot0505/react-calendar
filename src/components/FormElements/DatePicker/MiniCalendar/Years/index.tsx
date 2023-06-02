@@ -1,7 +1,7 @@
 import React from "react";
+
 import { IDirections, IModes } from "types/date";
 import Year from "../Year";
-
 import styles from './Years.module.scss';
 
 interface YearsProps {

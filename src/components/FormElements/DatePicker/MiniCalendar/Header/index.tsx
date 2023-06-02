@@ -1,6 +1,6 @@
 import React from "react";
-import { IDirections, IModes, IMonth, TMonth } from "types/date";
 
+import { IDirections, IModes, IMonth, TMonth } from "types/date";
 import styles from './Header.module.scss';
 
 interface HeaderProps {

@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
+
 import { useCalendar } from 'hooks/useCalendar';
 import { useClickOutside } from 'hooks/useClickOutside';
 import { formatDate } from 'utils/date';
 import { getTextWidthFromInput } from './helpers';
 import DateInput from './DateInput';
 import MiniCalendar from './MiniCalendar';
-
 import styles from './DatePicker.module.scss';
 
 interface DatePickerProps {

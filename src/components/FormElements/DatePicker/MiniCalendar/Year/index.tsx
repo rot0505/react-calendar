@@ -1,6 +1,6 @@
 import React from "react";
-import { IModes } from "types/date";
 
+import { IModes } from "types/date";
 import styles from './Year.module.scss';
 
 interface YearProps {

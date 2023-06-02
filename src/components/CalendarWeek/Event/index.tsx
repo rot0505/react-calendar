@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
-import { usePopup } from 'hooks/index';
 
+import { usePopup } from 'hooks/index';
 import styles from './Event.module.scss';
 
 interface IEventProps {

@@ -1,9 +1,9 @@
 import React, { ChangeEvent, KeyboardEvent, useRef } from "react";
+
 import TextField from "../../TextField";
 import { IFieldProps } from "../../types";
 import { useThrottle } from "hooks";
 import { getOptionIndx, parseTimeString } from "../helpers";
-
 import styles from './TimeInput.module.scss';
 
 interface ITimeInputProps extends IFieldProps {

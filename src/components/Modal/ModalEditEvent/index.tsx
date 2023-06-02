@@ -1,4 +1,5 @@
 import React from "react";
+
 import { getMapEventValues } from "../helpers";
 import ModalFormEvent from "../ModalFormEvent";
 import { TPartialEvent } from "types/event";

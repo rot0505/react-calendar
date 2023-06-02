@@ -1,10 +1,10 @@
 import React from "react";
+
 import { IEvent } from "types/event";
 import { IMonthDay } from "types/date";
 import LongEvent from "components/LongEvent";
 import { useModal } from "hooks/useModal";
 import { getStyledForLongEvent } from "utils/helpers";
-
 import styles from './LongEventSlot.module.scss';
 
 interface ILongEventSlotProps {

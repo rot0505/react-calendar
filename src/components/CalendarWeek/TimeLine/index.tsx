@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { createDate } from "utils/date";
 
+import { createDate } from "utils/date";
 import styles from "./TimeLine.module.scss";
 
 const MINUTE_IN_MILLISECONDS = 1000 * 60;

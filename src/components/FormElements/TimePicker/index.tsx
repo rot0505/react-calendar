@@ -5,7 +5,6 @@ import { generateTimesForDay } from 'utils/date';
 import { getOptionIndx, parseTimeString } from './helpers';
 import TimeInput from './TimeInput';
 import TimeOption from './TimeOption';
-
 import styles from './TimePicker.module.scss';
 
 interface TimePickerProps {

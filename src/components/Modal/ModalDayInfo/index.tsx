@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+
 import { createDate } from "utils/date";
 import { getEventsInterval, getLongEvents, getShortEvents, getSortedEvents, getStyledForLongEvent } from "utils/helpers";
 import {
@@ -8,7 +9,6 @@ import {
 } from "hooks/index";
 import LongEvent from "components/LongEvent";
 import ShortEvent from "components/ShortEvent";
-
 import styles from "./ModalDayInfo.module.scss";
 
 interface IModalDayInfoProps {

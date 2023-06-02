@@ -1,7 +1,7 @@
 import React from "react";
+
 import { IMonthDay, TMonth } from "types/date";
 import { checkDateIsEqual, checkIsToday } from "utils/date";
-
 import styles from './Day.module.scss';
 
 interface DayProps {

@@ -1,9 +1,9 @@
 import React from 'react';
+
 import Day from '../Day';
 import { IEvent } from 'types/event';
 import { IMonthDay } from 'types/date';
 import { shmoment } from 'utils/date';
-
 import styles from './Week.module.scss';
 
 interface IWeekProps {

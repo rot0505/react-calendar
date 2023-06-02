@@ -1,9 +1,9 @@
 import { ChangeEvent, forwardRef, KeyboardEvent, useImperativeHandle, useRef } from 'react'
+
 import TextField from '../../TextField';
 import { IFieldProps } from '../../types';
 import { formatDate, shmoment, translationFromStringToDate } from 'utils/date';
 import { getTextWidthFromInput } from '../helpers';
-
 import styles from './DateInput.module.scss';
 
 interface IDateInputProps extends IFieldProps {

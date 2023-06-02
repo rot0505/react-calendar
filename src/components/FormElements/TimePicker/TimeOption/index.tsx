@@ -1,6 +1,6 @@
 import React from "react";
-import { formatDifferenceOfTwoTimes } from "utils/date";
 
+import { formatDifferenceOfTwoTimes } from "utils/date";
 import styles from './TimeOption.module.scss';
 
 interface ITimeOptionsProps {

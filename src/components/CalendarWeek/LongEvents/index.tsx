@@ -1,9 +1,9 @@
 import React from "react";
+
 import { IMonthDay } from "types/date";
 import { IEvent } from "types/event";
 import { getPositionYForWeekEvents, getSortedWeekEvents } from "utils/helpers";
 import LongEventSlot from "../LongEventSlot";
-
 import styles from './LongEvents.module.scss';
 
 interface ILongEventsProps {

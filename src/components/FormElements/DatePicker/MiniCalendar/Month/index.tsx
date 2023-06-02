@@ -1,6 +1,6 @@
 import React from "react";
-import { IModes, IMonth, TMonth } from "types/date";
 
+import { IModes, IMonth, TMonth } from "types/date";
 import styles from './Month.module.scss';
 
 interface MonthProps {
