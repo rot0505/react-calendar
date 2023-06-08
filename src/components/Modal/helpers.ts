@@ -8,7 +8,7 @@ export const getMapEventValues = ({
   startDate,
   endDate,
   type,
-  color = colors[0]
+  color = colors[0],
 }: IMapEventValues): IModalValues => {
   return {
     title,
@@ -17,7 +17,7 @@ export const getMapEventValues = ({
     startTime: formatDate(startDate, `hh:mm`),
     endTime: formatDate(endDate, `hh:mm`),
     description,
-    isLongEvent: type === 'long-event',
-    color
-  }
-}
+    isLongEvent: type === "long-event",
+    color,
+  };
+};

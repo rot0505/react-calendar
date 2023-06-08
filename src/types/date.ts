@@ -5,15 +5,15 @@ export type TWeek = ReturnType<typeof createWeek>;
 export type TMonth = ReturnType<typeof createMonth>;
 
 export interface IWeekDay {
-  day: TDate['day'];
-  dayShort: TDate['dayShort'];
+  day: TDate["day"];
+  dayShort: TDate["dayShort"];
 }
 
 export interface IMonth {
-  month: TDate['month'];
-  monthShort: TDate['monthShort'];
-  monthIndex: TDate['monthIndex'];
-  date: TDate['date'];
+  month: TDate["month"];
+  monthShort: TDate["monthShort"];
+  monthIndex: TDate["monthIndex"];
+  date: TDate["date"];
 }
 
 export type IMonthDay = ReturnType<typeof getDay>;

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { formatDifferenceOfTwoTimes } from "utils/date";
-import styles from './TimeOption.module.scss';
+import styles from "./TimeOption.module.scss";
 
 interface ITimeOptionsProps {
   hours: string;
@@ -28,14 +28,14 @@ const TimeOption: React.FC<ITimeOptionsProps> = ({
   locale,
   setSelectedOptionId,
   selectTime,
-  closeOptions
+  closeOptions,
 }) => {
   const time = `${hours}:${mins}`;
 
   const handleSelectOption = () => {
     selectTime(time);
     closeOptions();
-  }
+  };
 
   const onMouseEnterSelectOption = () => setSelectedOptionId(indx);
 
@@ -47,13 +47,9 @@ const TimeOption: React.FC<ITimeOptionsProps> = ({
       aria-selected={selectedOptionId === indx}
       onMouseEnter={onMouseEnterSelectOption}
     >
-      {
-        isToday && !isFullDay
-          ? `${time} (${formatDifferenceOfTwoTimes(timeFrom, time, locale)})`
-          : time
-      }
+      {isToday && !isFullDay ? `${time} (${formatDifferenceOfTwoTimes(timeFrom, time, locale)})` : time}
     </div>
   );
-}
+};
 
 export default TimeOption;

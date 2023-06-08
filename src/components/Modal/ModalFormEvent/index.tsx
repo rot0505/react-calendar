@@ -1,13 +1,19 @@
-import React, { ChangeEvent, useRef } from 'react';
+import React, { ChangeEvent, useRef } from "react";
 
-import { useClickOutside, useForm } from 'hooks';
-import { checkDateIsEqual, getDateTime, getDifferenceInTimeFromTwoTimes, getDifferenceOfTwoDates, shmoment } from 'utils/date';
-import { TSubmitHandler } from 'hooks/useForm/types';
-import { createEventSchema } from 'validation-schemas/index';
-import { IModalValues } from './types';
-import { TPartialEvent } from 'types/event';
-import { TextField, DatePicker, TimePicker, ColorPicker } from 'components/FormElements';
-import styles from './ModalFormEvent.module.scss';
+import { useClickOutside, useForm } from "hooks";
+import {
+  checkDateIsEqual,
+  getDateTime,
+  getDifferenceInTimeFromTwoTimes,
+  getDifferenceOfTwoDates,
+  shmoment,
+} from "utils/date";
+import { TSubmitHandler } from "hooks/useForm/types";
+import { createEventSchema } from "validation-schemas/index";
+import { IModalValues } from "./types";
+import { TPartialEvent } from "types/event";
+import { TextField, DatePicker, TimePicker, ColorPicker } from "components/FormElements";
+import styles from "./ModalFormEvent.module.scss";
 
 interface IModalFormEventProps {
   textSendButton: string;
@@ -22,13 +28,13 @@ const ModalFormEvent: React.FC<IModalFormEventProps> = ({
   textSendingBtn,
   closeModal,
   defaultEventValues,
-  handlerSubmit
+  handlerSubmit,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   const { values, handleChange, handleSubmit, setValue, errors, submitting } = useForm<IModalValues>({
     defaultValues: defaultEventValues,
-    rules: createEventSchema
+    rules: createEventSchema,
   });
 
   const isValid = Object.keys(errors).length === 0;
@@ -36,66 +42,67 @@ const ModalFormEvent: React.FC<IModalFormEventProps> = ({
   const onSelectStartDate = (date: Date) => {
     if (values.isLongEvent) {
       const { minutes } = getDifferenceOfTwoDates(values.startDate, values.endDate);
-      const newEndDate = shmoment(date).add('minutes', minutes).result();
+      const newEndDate = shmoment(date).add("minutes", minutes).result();
 
-      setValue('endDate', newEndDate);
-      setValue('startDate', date);
+      setValue("endDate", newEndDate);
+      setValue("startDate", date);
       return;
     }
 
     const oldStartDate = getDateTime(values.startDate, values.startTime);
     const newStartDate = getDateTime(date, values.startTime);
     const { minutes } = getDifferenceOfTwoDates(oldStartDate, values.endDate);
-    const newEndDate = shmoment(newStartDate).add('minutes', minutes).result();
+    const newEndDate = shmoment(newStartDate).add("minutes", minutes).result();
 
-    setValue('endDate', newEndDate);
-    setValue('startDate', newStartDate);
-  }
+    setValue("endDate", newEndDate);
+    setValue("startDate", newStartDate);
+  };
 
   const onSelectEndDate = (date: Date) => {
-    const endTime = values.isLongEvent ? '23:59' : values.endTime;
-    setValue('endDate', getDateTime(date, endTime));
-  }
+    const endTime = values.isLongEvent ? "23:59" : values.endTime;
+    setValue("endDate", getDateTime(date, endTime));
+  };
 
   const onSelectStartTime = (time: string) => {
-    const [startHours, startMins] = time.split(':');
+    const [startHours, startMins] = time.split(":");
     const { hours, minutes } = getDifferenceOfTwoDates(values.startDate, values.endDate);
-    const restHourFromDiff = (+startMins + (minutes % 60)) >= 60 ? 1 : 0;
+    const restHourFromDiff = +startMins + (minutes % 60) >= 60 ? 1 : 0;
 
-    const newEndMins = ((+startMins + minutes) % 60).toString().padStart(2, '0');
-    const newEndHours = ((+startHours + Math.floor(hours) + restHourFromDiff) % 24).toString().padStart(2, '0');
+    const newEndMins = ((+startMins + minutes) % 60).toString().padStart(2, "0");
+    const newEndHours = ((+startHours + Math.floor(hours) + restHourFromDiff) % 24).toString().padStart(2, "0");
 
     const newEndTime = `${newEndHours}:${newEndMins}`;
-    const newEndDate = shmoment(getDateTime(values.startDate, time)).add('minutes', minutes).result();
+    const newEndDate = shmoment(getDateTime(values.startDate, time)).add("minutes", minutes).result();
 
-    setValue('startTime', time);
-    setValue('endTime', newEndTime);
-    setValue('endDate', newEndDate);
-    setValue('startDate', getDateTime(values.startDate, time));
-  }
+    setValue("startTime", time);
+    setValue("endTime", newEndTime);
+    setValue("endDate", newEndDate);
+    setValue("startDate", getDateTime(values.startDate, time));
+  };
 
   const onSelectEndTime = (time: string) => {
     const isDatesEqual = checkDateIsEqual(values.startDate, values.endDate);
-    const {
-      minutes
-    } = (isDatesEqual || !!errors.endDate) ? getDifferenceInTimeFromTwoTimes(values.startTime, time) : getDifferenceOfTwoDates(values.startDate, getDateTime(values.endDate, time));
-    const newEndDate = shmoment(getDateTime(values.startDate, values.startTime)).add('minutes', minutes).result();
+    const { minutes } =
+      isDatesEqual || !!errors.endDate
+        ? getDifferenceInTimeFromTwoTimes(values.startTime, time)
+        : getDifferenceOfTwoDates(values.startDate, getDateTime(values.endDate, time));
+    const newEndDate = shmoment(getDateTime(values.startDate, values.startTime)).add("minutes", minutes).result();
 
-    setValue('endTime', time);
-    setValue('endDate', newEndDate);
-  }
+    setValue("endTime", time);
+    setValue("endDate", newEndDate);
+  };
 
-  const onChangeColor = (color: string) => setValue('color', color);
+  const onChangeColor = (color: string) => setValue("color", color);
 
   const onToggleIsLongEvent = (e: ChangeEvent<HTMLInputElement>) => {
     const isLongEvent = e.target.checked;
-    const startTime = isLongEvent ? '00:00' : values.startTime;
-    const endTime = isLongEvent ? '23:59' : values.endTime;
+    const startTime = isLongEvent ? "00:00" : values.startTime;
+    const endTime = isLongEvent ? "23:59" : values.endTime;
 
-    setValue('isLongEvent', isLongEvent);
-    setValue('startDate', getDateTime(values.startDate, startTime));
-    setValue('endDate', getDateTime(values.endDate, endTime));
-  }
+    setValue("isLongEvent", isLongEvent);
+    setValue("startDate", getDateTime(values.startDate, startTime));
+    setValue("endDate", getDateTime(values.endDate, endTime));
+  };
 
   const onSubmit: TSubmitHandler<IModalValues> = async (data) => {
     const newEvent: TPartialEvent = {
@@ -103,13 +110,13 @@ const ModalFormEvent: React.FC<IModalFormEventProps> = ({
       description: data.description,
       start: data.startDate.toString(),
       end: data.endDate.toString(),
-      type: data.isLongEvent ? 'long-event' : 'event',
-      color: data.color
+      type: data.isLongEvent ? "long-event" : "event",
+      color: data.color,
     };
 
     await handlerSubmit(newEvent);
     closeModal();
-  }
+  };
 
   useClickOutside(modalRef, closeModal);
 
@@ -117,16 +124,10 @@ const ModalFormEvent: React.FC<IModalFormEventProps> = ({
     <div className="overlay">
       <div className={styles.modal} ref={modalRef}>
         <div className={styles.modal_content}>
-          <button
-            className={styles.modal_content_close}
-            onClick={closeModal}
-          >
+          <button className={styles.modal_content_close} onClick={closeModal}>
             <i className="fas fa-times"></i>
           </button>
-          <form
-            className={styles.modal_form}
-            onSubmit={handleSubmit(onSubmit)}
-          >
+          <form className={styles.modal_form} onSubmit={handleSubmit(onSubmit)}>
             <TextField
               type="text"
               name="title"
@@ -138,15 +139,11 @@ const ModalFormEvent: React.FC<IModalFormEventProps> = ({
               fullWidth
             />
             <div className={`${styles.modal_form_date} ${styles.modal_form_group}`}>
-              <DatePicker
-                selectedDate={values.startDate}
-                selectDate={onSelectStartDate}
-                error={errors.startDate}
-              />
+              <DatePicker selectedDate={values.startDate} selectDate={onSelectStartDate} error={errors.startDate} />
               {!values.isLongEvent && (
                 <div className={styles.modal_form_time}>
                   <TimePicker
-                    timeFrom='00:00'
+                    timeFrom="00:00"
                     selectedTime={values.startTime}
                     selectTime={onSelectStartTime}
                     isFullDay
@@ -164,16 +161,12 @@ const ModalFormEvent: React.FC<IModalFormEventProps> = ({
               )}
               {values.isLongEvent && <div>-</div>}
               <div>
-                <DatePicker
-                  selectedDate={values.endDate}
-                  selectDate={onSelectEndDate}
-                  error={errors.endDate}
-                />
+                <DatePicker selectedDate={values.endDate} selectDate={onSelectEndDate} error={errors.endDate} />
               </div>
             </div>
             {(!!errors.startDate || !!errors.endDate || !!errors.startTime || !!errors.endTime) && (
               <div className={styles.modal_form_error}>
-                {(errors.startDate ?? errors.endDate ?? errors.startTime ?? errors.endTime)}
+                {errors.startDate ?? errors.endDate ?? errors.startTime ?? errors.endTime}
               </div>
             )}
             <div className={`${styles.modal_form_checkbox_container} ${styles.modal_form_group}`}>
@@ -189,10 +182,7 @@ const ModalFormEvent: React.FC<IModalFormEventProps> = ({
               </label>
             </div>
             <div className={styles.modal_form_group}>
-              <ColorPicker
-                selectedColor={values.color}
-                onChangeColor={onChangeColor}
-              />
+              <ColorPicker selectedColor={values.color} onChangeColor={onChangeColor} />
             </div>
             <div className={`${styles.modal_form_textarea_container} ${styles.modal_form_group}`}>
               <textarea
@@ -203,11 +193,7 @@ const ModalFormEvent: React.FC<IModalFormEventProps> = ({
                 value={values.description}
               />
             </div>
-            <button
-              type="submit"
-              className={styles.modal_form_btn}
-              disabled={submitting || !isValid}
-            >
+            <button type="submit" className={styles.modal_form_btn} disabled={submitting || !isValid}>
               {submitting ? textSendingBtn : textSendButton}
             </button>
           </form>
@@ -215,6 +201,6 @@ const ModalFormEvent: React.FC<IModalFormEventProps> = ({
       </div>
     </div>
   );
-}
+};
 
 export default ModalFormEvent;

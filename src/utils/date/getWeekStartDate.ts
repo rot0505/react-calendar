@@ -3,7 +3,7 @@ export const getWeekStartDate = (date: Date) => {
   const monthIndex = date.getMonth();
   const dayNumber = date.getDate();
   const dayNumberInWeek = date.getDay();
-  
+
   const difference =
     dayNumberInWeek === 0
       ? -6 // for Sunday

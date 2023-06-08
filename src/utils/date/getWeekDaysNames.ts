@@ -1,14 +1,14 @@
-import { createDate } from './createDate';
-import { IWeekDay } from 'types/date';
+import { createDate } from "./createDate";
+import { IWeekDay } from "types/date";
 
-export const getWeekDaysNames = (firstWeekDay = 2, locale = 'default') => {
+export const getWeekDaysNames = (firstWeekDay = 2, locale = "default") => {
   const date = new Date();
   const weekDaysNames: IWeekDay[] = Array.from({ length: 7 });
 
   weekDaysNames.forEach((_, i) => {
     const { day, dayNumberInWeek, dayShort } = createDate({
       locale,
-      date: new Date(date.getFullYear(), date.getMonth(), date.getDate() + i)
+      date: new Date(date.getFullYear(), date.getMonth(), date.getDate() + i),
     });
 
     weekDaysNames[dayNumberInWeek - 1] = { day, dayShort };

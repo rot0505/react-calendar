@@ -15,16 +15,19 @@ const createNewErrors = (errors: IErrorsMessages, deleteField: string) => {
     }
     return obj;
   }, {} as IErrorsMessages);
-}
+};
 
 const isEmpty = (obj: unknown) => {
-  if (typeof obj !== 'object' || obj === null) {
-    throw new Error('Input must be an object');
+  if (typeof obj !== "object" || obj === null) {
+    throw new Error("Input must be an object");
   }
   return Object.keys(obj as object).length === 0;
 };
 
-export const useForm = <FormValues extends IValidatorData>({ defaultValues, rules = {} }: IUseFormProps<FormValues>) => {
+export const useForm = <FormValues extends IValidatorData>({
+  defaultValues,
+  rules = {},
+}: IUseFormProps<FormValues>) => {
   const { errors, validate, checkField, fails, setErrors } = useValidator<FormValues>();
   const [values, setValues] = useState(defaultValues);
   const [submitting, setSubmitting] = useState(false);
@@ -40,29 +43,27 @@ export const useForm = <FormValues extends IValidatorData>({ defaultValues, rule
     }
 
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
-  }
+  };
 
-  const handleChange = (
-    { target: { name, value } }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => setValue(name, value as FormValues[keyof FormValues]);
+  const handleChange = ({ target: { name, value } }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setValue(name, value as FormValues[keyof FormValues]);
 
-  const handleSubmit = (onSubmit: TSubmitHandler<FormValues>) =>
-    async (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      setSubmitting(true);
+  const handleSubmit = (onSubmit: TSubmitHandler<FormValues>) => async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
 
-      if (!isEmpty(rules)) {
-        const errorsMessages = validate(values, rules);
-        const errors = fails(errorsMessages);
+    if (!isEmpty(rules)) {
+      const errorsMessages = validate(values, rules);
+      const errors = fails(errorsMessages);
 
-        if (!errors.status) {
-          setSubmitting(false);
-          return;
-        }
+      if (!errors.status) {
+        setSubmitting(false);
+        return;
       }
-      await onSubmit(values, e);
-      setSubmitting(false);
-    };
+    }
+    await onSubmit(values, e);
+    setSubmitting(false);
+  };
 
   return { values, handleChange, handleSubmit, setValue, submitting, errors };
-}
+};

@@ -5,7 +5,7 @@ import { IEvent } from "types/event";
 import { checkDateIsEqual } from "utils/date";
 import { getPositionYForWeekEvents, getSortedEvents, getSortedWeekEvents } from "utils/helpers";
 import Day from "../Day";
-import styles from './Week.module.scss';
+import styles from "./Week.module.scss";
 
 interface IWeekProps {
   weekDays: IMonthDay[];
@@ -15,13 +15,7 @@ interface IWeekProps {
   countRows: number;
 }
 
-const Week: React.FC<IWeekProps> = ({
-  weekDays,
-  shortEvents,
-  longEvents,
-  selectedMonth,
-  countRows
-}) => {
+const Week: React.FC<IWeekProps> = ({ weekDays, shortEvents, longEvents, selectedMonth, countRows }) => {
   const { sortedWeekEvents } = getSortedWeekEvents(weekDays, longEvents);
 
   const weekEventsPositionY = getPositionYForWeekEvents(sortedWeekEvents);
@@ -52,6 +46,6 @@ const Week: React.FC<IWeekProps> = ({
       })}
     </div>
   );
-}
+};
 
 export default Week;

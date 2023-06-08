@@ -4,4 +4,4 @@ export const checkDateIsEqual = (date1: Date, date2: Date) => {
   const isCurrentDay = date1.getDate() === date2.getDate();
 
   return isCurrentYear && isCurrentMonth && isCurrentDay;
-}
+};

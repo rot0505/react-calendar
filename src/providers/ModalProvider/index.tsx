@@ -3,7 +3,7 @@ import { useModal } from "hooks/useModal";
 import { ModalCreateEvent, ModalDayInfo, ModalEditEvent } from "components/Modal";
 
 interface IModalPros {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export const ModalProvider: React.FC<IModalPros> = ({ children }) => {
@@ -13,20 +13,14 @@ export const ModalProvider: React.FC<IModalPros> = ({ children }) => {
     isOpenModalDayInfoEvents,
     selectedDate,
     modalEditEventOptions,
-    modalCreateEventOptions
+    modalCreateEventOptions,
   } = useModal();
 
   return (
     <>
-      {isOpenModalCreateEvent && (
-        <ModalCreateEvent {...modalCreateEventOptions!} />
-      )}
-      {isOpenModalEditEvent && (
-        <ModalEditEvent {...modalEditEventOptions!} />
-      )}
-      {isOpenModalDayInfoEvents && (
-        <ModalDayInfo selectedDate={selectedDate!} />
-      )}
+      {isOpenModalCreateEvent && <ModalCreateEvent {...modalCreateEventOptions!} />}
+      {isOpenModalEditEvent && <ModalEditEvent {...modalEditEventOptions!} />}
+      {isOpenModalDayInfoEvents && <ModalDayInfo selectedDate={selectedDate!} />}
       {children}
     </>
   );

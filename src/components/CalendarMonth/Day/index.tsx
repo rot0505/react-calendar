@@ -1,13 +1,13 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent } from "react";
 
-import { IMonthDay, TMonth } from 'types/date';
-import { IEvent } from 'types/event';
-import { checkIsToday, createDate, getNextStartMinutes, shmoment } from 'utils/date';
-import { useModal } from 'hooks/useModal';
-import { getStyledForLongEvent } from 'utils/helpers';
-import LongEvent from 'components/LongEvent';
-import ShortEvent from 'components/ShortEvent';
-import styles from './Day.module.scss';
+import { IMonthDay, TMonth } from "types/date";
+import { IEvent } from "types/event";
+import { checkIsToday, createDate, getNextStartMinutes, shmoment } from "utils/date";
+import { useModal } from "hooks/useModal";
+import { getStyledForLongEvent } from "utils/helpers";
+import LongEvent from "components/LongEvent";
+import ShortEvent from "components/ShortEvent";
+import styles from "./Day.module.scss";
 
 interface IDayProps {
   weekDays: IMonthDay[];
@@ -26,7 +26,7 @@ const Day: React.FC<IDayProps> = ({
   dayShortEvents,
   dayLongEvents,
   dayEventsPositionY,
-  countRows
+  countRows,
 }) => {
   const { openModalCreate, openModalDayInfo } = useModal();
 
@@ -47,31 +47,31 @@ const Day: React.FC<IDayProps> = ({
   const handleCreateEvent = () => {
     const { hours, minutes } = createDate({ date: new Date() });
     const startMins = getNextStartMinutes(minutes);
-    const selectedDate = shmoment(day.date).add('hours', hours).add('minutes', minutes + startMins).result();
+    const selectedDate = shmoment(day.date)
+      .add("hours", hours)
+      .add("minutes", minutes + startMins)
+      .result();
 
-    openModalCreate({ selectedDate, type: 'long-event' })
-  }
+    openModalCreate({ selectedDate, type: "long-event" });
+  };
 
   const handleShowModalDayInfo = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     openModalDayInfo(day.date);
-  }
+  };
 
   return (
-    <div
-      className={styles.day}
-      onClick={handleCreateEvent}
-    >
-      <div className={`${styles.day_label} ${checkIsToday(day.date) && styles.day_label_active} ${day.monthIndex !== selectedMonth.monthIndex && styles.day_label_additional}`}>
-        {day.dayNumber === 1
-          ? `${day.dayNumber} ${day.monthShort}`
-          : day.dayNumber
-        }
+    <div className={styles.day} onClick={handleCreateEvent}>
+      <div
+        className={`${styles.day_label} ${checkIsToday(day.date) && styles.day_label_active} ${
+          day.monthIndex !== selectedMonth.monthIndex && styles.day_label_additional
+        }`}
+      >
+        {day.dayNumber === 1 ? `${day.dayNumber} ${day.monthShort}` : day.dayNumber}
       </div>
       <div className={styles.day_events}>
         {dayEventsPositionY.slice(0, maxCountLongEvents).map((eventId, indx) => {
-
-          const event = dayLongEvents.find(event => event.id === eventId);
+          const event = dayLongEvents.find((event) => event.id === eventId);
 
           const { width, isShowEvent, isMovingFromPrev, isMovingToNext } = getStyledForLongEvent(weekDays, day, event!);
 
@@ -90,30 +90,19 @@ const Day: React.FC<IDayProps> = ({
             />
           );
         })}
-        {!isShowMoreBtn && (
+        {!isShowMoreBtn &&
           dayShortEvents.slice(0, countShortEvents).map((event, indx) => {
             const top = (dayEventsPositionY.length + indx) * 24;
-            return (
-              <ShortEvent
-                key={event.id}
-                event={event}
-                top={top}
-              />
-            )
-          })
-        )}
+            return <ShortEvent key={event.id} event={event} top={top} />;
+          })}
         {isShowMoreBtn && (
-          <button
-            className={styles.day_more_btn}
-            style={styleForMoreBtn}
-            onClick={handleShowModalDayInfo}
-          >
+          <button className={styles.day_more_btn} style={styleForMoreBtn} onClick={handleShowModalDayInfo}>
             {restCountEvents} More
           </button>
         )}
       </div>
     </div>
   );
-}
+};
 
 export default Day;

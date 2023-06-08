@@ -2,7 +2,7 @@ import React from "react";
 
 import { IMonthDay, TMonth } from "types/date";
 import { checkDateIsEqual, checkIsToday } from "utils/date";
-import styles from './Day.module.scss';
+import styles from "./Day.module.scss";
 
 interface DayProps {
   day: IMonthDay;
@@ -23,11 +23,13 @@ const Day: React.FC<DayProps> = ({ day, selectedMonth, selectDay, selectedDate }
       key={`${day.dayNumber}-${day.monthIndex}`}
       aria-hidden
       onClick={handleSelectDay}
-      className={`${styles.day} ${isToday && styles.day_today} ${isSelectedDay && styles.day_selected} ${isAdditionalDay && styles.day_additional}`}
+      className={`${styles.day} ${isToday && styles.day_today} ${isSelectedDay && styles.day_selected} ${
+        isAdditionalDay && styles.day_additional
+      }`}
     >
       {day.dayNumber}
     </div>
   );
-}
+};
 
 export default Day;

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
-import Calendar from 'pages/Calendar';
-import { useActions } from './hooks';
+import Calendar from "pages/Calendar";
+import { useActions } from "./hooks";
 
 const App: React.FC = () => {
   const { getEvents } = useActions();
@@ -10,9 +10,7 @@ const App: React.FC = () => {
     getEvents();
   }, []);
 
-  return (
-    <Calendar />
-  );
-}
+  return <Calendar />;
+};
 
 export default App;

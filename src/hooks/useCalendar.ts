@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react';
-import { IDirections, IModes } from 'types/date';
+import { useState, useMemo } from "react";
+import { IDirections, IModes } from "types/date";
 
 import {
   getMonthsNames,
@@ -9,8 +9,8 @@ import {
   createWeek,
   getCalendarDaysOfMonth,
   checkDateIsEqual,
-  getCalendarDaysOfYear
-} from 'utils/date';
+  getCalendarDaysOfYear,
+} from "utils/date";
 
 interface UseCalendarParams {
   locale?: string;
@@ -25,10 +25,10 @@ const getYearsInterval = (year: number) => {
 };
 
 export const useCalendar = ({
-  locale = 'default',
+  locale = "default",
   selectedDate: date,
   firstWeekDayNumber = 2,
-  defaultMode = 'week'
+  defaultMode = "week",
 }: UseCalendarParams) => {
   const [mode, setMode] = useState<IModes>(defaultMode);
   const [selectedDay, setSelectedDay] = useState(createDate({ date }));
@@ -37,31 +37,32 @@ export const useCalendar = ({
     createMonth({ date: new Date(selectedDay.year, selectedDay.monthIndex), locale })
   );
   const [selectedYear, setSelectedYear] = useState(selectedDay.year);
-  const [selectedYearsInterval, setSelectedYearsInterval] = useState(
-    getYearsInterval(selectedDay.year)
-  );
+  const [selectedYearsInterval, setSelectedYearsInterval] = useState(getYearsInterval(selectedDay.year));
 
   const monthsNames = useMemo(() => getMonthsNames(selectedDay.date, locale), [selectedDay]);
   const weekDaysNames = useMemo(() => getWeekDaysNames(firstWeekDayNumber, locale), []);
-  const weekDays = useMemo(() => selectedWeek.createWeekDays(), [selectedWeek.dayNumber, selectedYear, selectedMonth.monthIndex]);
+  const weekDays = useMemo(
+    () => selectedWeek.createWeekDays(),
+    [selectedWeek.dayNumber, selectedYear, selectedMonth.monthIndex]
+  );
   const displayedDate = useMemo(() => {
-    if (mode === 'year') {
+    if (mode === "year") {
       return `${selectedYear}`;
     }
-    if (mode === 'month') {
+    if (mode === "month") {
       return `${monthsNames[selectedMonth.monthIndex].month} ${selectedYear}`;
     }
     return selectedWeek.displayedMonth;
   }, [selectedYear, selectedMonth.monthIndex, selectedWeek.dayNumber, mode]);
 
   const calendarDaysOfMonth = useMemo(() => {
-    return mode !== 'month'
+    return mode !== "month"
       ? []
-      : getCalendarDaysOfMonth({ year: selectedYear, monthIndex: selectedMonth.monthIndex, firstWeekDayNumber })
+      : getCalendarDaysOfMonth({ year: selectedYear, monthIndex: selectedMonth.monthIndex, firstWeekDayNumber });
   }, [selectedYear, selectedMonth.monthIndex, mode]);
 
   const calendarDaysOfYear = useMemo(() => {
-    if (mode !== 'year') {
+    if (mode !== "year") {
       return [];
     }
 
@@ -77,36 +78,36 @@ export const useCalendar = ({
     void (!(isCurrentYear && isCurrentMonth) && setSelectedMonth(createMonth({ date, locale })));
     void (!checkDateIsEqual(date, selectedWeek.date) && setSelectedWeek(createWeek({ date, locale })));
     void (!checkDateIsEqual(date, selectedDay.date) && setSelectedDay(createDate({ date })));
-  }
+  };
 
   const onClickArrow = (direction: IDirections) => {
-    if (direction === 'today') {
+    if (direction === "today") {
       return onChangeState(new Date());
     }
 
-    if (mode === 'year') {
-      const year = selectedYear + (direction === 'left' ? -1 : 1);
+    if (mode === "year") {
+      const year = selectedYear + (direction === "left" ? -1 : 1);
       return onChangeState(new Date(year, 0, 1));
     }
 
-    if (mode === 'month') {
-      const month = selectedMonth.monthIndex + (direction === 'left' ? -1 : 1);
+    if (mode === "month") {
+      const month = selectedMonth.monthIndex + (direction === "left" ? -1 : 1);
       return onChangeState(new Date(selectedMonth.year, month, 1));
     }
 
-    if (mode === 'week') {
-      const dayNumber = selectedWeek.dayNumber + (direction === 'left' ? -7 : 7);
+    if (mode === "week") {
+      const dayNumber = selectedWeek.dayNumber + (direction === "left" ? -7 : 7);
       const newSelectedWeekDate = new Date(selectedWeek.year, selectedWeek.monthIndex, dayNumber);
       onChangeState(newSelectedWeekDate);
     }
 
-    if (mode === 'years') {
-      const years = selectedYearsInterval[0] + (direction === 'left' ? -10 : 10);
+    if (mode === "years") {
+      const years = selectedYearsInterval[0] + (direction === "left" ? -10 : 10);
       return setSelectedYearsInterval(getYearsInterval(years));
     }
 
-    if (mode === 'months') {
-      const year = selectedYear + (direction === 'left' ? -1 : 1);
+    if (mode === "months") {
+      const year = selectedYear + (direction === "left" ? -1 : 1);
       if (!selectedYearsInterval.includes(year)) {
         setSelectedYearsInterval(getYearsInterval(year));
       }
@@ -130,7 +131,7 @@ export const useCalendar = ({
       selectedDay,
       selectedMonth,
       selectedYear,
-      selectedYearsInterval
+      selectedYearsInterval,
     },
     functions: {
       onClickArrow,
@@ -139,7 +140,7 @@ export const useCalendar = ({
       setSelectedYear,
       onChangeState,
       setSelectedMonthByIndex,
-      setSelectedYearsInterval
-    }
+      setSelectedYearsInterval,
+    },
   };
 };

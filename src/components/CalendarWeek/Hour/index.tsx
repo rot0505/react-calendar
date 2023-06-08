@@ -1,12 +1,12 @@
-import React, { MouseEvent, useRef, useState } from 'react';
+import React, { MouseEvent, useRef, useState } from "react";
 
-import { checkIsToday, shmoment } from 'utils/date';
-import Event from '../Event';
-import TimeLine from '../TimeLine';
-import { IEvent } from 'types/event';
-import { getStyledByPositionXForEvent, getStyledByPostionYForEvent } from 'utils/helpers';
-import { useModal } from 'hooks/useModal';
-import styles from './Hour.module.scss';
+import { checkIsToday, shmoment } from "utils/date";
+import Event from "../Event";
+import TimeLine from "../TimeLine";
+import { IEvent } from "types/event";
+import { getStyledByPositionXForEvent, getStyledByPostionYForEvent } from "utils/helpers";
+import { useModal } from "hooks/useModal";
+import styles from "./Hour.module.scss";
 
 interface IHourProps {
   dataHour: number;
@@ -15,12 +15,7 @@ interface IHourProps {
   dayEvents: IEvent[];
 }
 
-const Hour: React.FC<IHourProps> = ({
-  dataHour,
-  hourEvents,
-  dateDay,
-  dayEvents
-}) => {
+const Hour: React.FC<IHourProps> = ({ dataHour, hourEvents, dateDay, dayEvents }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const timeSlotRef = useRef<HTMLDivElement>(null);
   const isCurrentHour = dataHour === currentDate.getHours();
@@ -31,21 +26,14 @@ const Hour: React.FC<IHourProps> = ({
     const offsetY = e.pageY - top;
 
     const mins = Math.floor(offsetY / 30) * 30;
-    const selectedDate = shmoment(dateDay).add('hours', dataHour).add('minutes', mins).result();
+    const selectedDate = shmoment(dateDay).add("hours", dataHour).add("minutes", mins).result();
 
-    openModalCreate({ selectedDate })
-  }
+    openModalCreate({ selectedDate });
+  };
 
   return (
-    <div
-      className={styles.time_slot}
-      data-time={dataHour + 1}
-      onClick={handleCreateEvent}
-      ref={timeSlotRef}
-    >
-      {(checkIsToday(dateDay) && isCurrentHour) && (
-        <TimeLine currentDate={currentDate} setCurrentDate={setCurrentDate} />
-      )}
+    <div className={styles.time_slot} data-time={dataHour + 1} onClick={handleCreateEvent} ref={timeSlotRef}>
+      {checkIsToday(dateDay) && isCurrentHour && <TimeLine currentDate={currentDate} setCurrentDate={setCurrentDate} />}
 
       {/* if no events in the current hour nothing will render here */}
       {hourEvents.map((event) => {

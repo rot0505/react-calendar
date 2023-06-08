@@ -8,6 +8,6 @@ export const usePopup = () => {
   return {
     ...popusData,
     openPopup,
-    closePopup
-  }
-}
+    closePopup,
+  };
+};

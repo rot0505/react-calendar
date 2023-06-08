@@ -2,7 +2,7 @@ import React from "react";
 
 import Day from "../Day";
 import { IMonthDay, IWeekDay, TMonth } from "types/date";
-import styles from './Days.module.scss';
+import styles from "./Days.module.scss";
 
 interface DaysProps {
   selectDay: (date: Date) => void;
@@ -12,13 +12,7 @@ interface DaysProps {
   selectedDate: Date;
 }
 
-const Days: React.FC<DaysProps> = ({
-  selectDay,
-  selectedMonth,
-  weekDaysNames,
-  calendarDaysOfMonth,
-  selectedDate
-}) => {
+const Days: React.FC<DaysProps> = ({ selectDay, selectedMonth, weekDaysNames, calendarDaysOfMonth, selectedDate }) => {
   return (
     <>
       <div className={styles.week_names}>

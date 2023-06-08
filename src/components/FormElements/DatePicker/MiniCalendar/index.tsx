@@ -5,7 +5,7 @@ import Header from "./Header";
 import Days from "./Days";
 import Months from "./Months";
 import Years from "./Years";
-import styles from './MiniCalendar.module.scss';
+import styles from "./MiniCalendar.module.scss";
 
 interface MiniCalendarProps {
   monthsNames: IMonth[];
@@ -36,7 +36,7 @@ const MiniCalendar: React.FC<MiniCalendarProps> = ({
   selectDay,
   setMode,
   setSelectedMonthByIndex,
-  setSelectedYear
+  setSelectedYear,
 }) => {
   return (
     <div className={styles.mini_calendar}>
@@ -50,7 +50,7 @@ const MiniCalendar: React.FC<MiniCalendarProps> = ({
         setMode={setMode}
       />
       <div className={styles.mini_calendar_body}>
-        {mode === 'month' && (
+        {mode === "month" && (
           <Days
             selectDay={selectDay}
             selectedMonth={selectedMonth}
@@ -59,7 +59,7 @@ const MiniCalendar: React.FC<MiniCalendarProps> = ({
             selectedDate={selectedDate}
           />
         )}
-        {mode === 'months' && (
+        {mode === "months" && (
           <Months
             selectedMonth={selectedMonth}
             monthsNames={monthsNames}
@@ -68,7 +68,7 @@ const MiniCalendar: React.FC<MiniCalendarProps> = ({
             setMode={setMode}
           />
         )}
-        {mode === 'years' && (
+        {mode === "years" && (
           <Years
             selectedYearsInterval={selectedYearsInterval}
             selectedYear={selectedYear}

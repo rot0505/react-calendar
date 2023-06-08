@@ -4,12 +4,12 @@ export const getDifferenceOfTwoDates = (startDate: Date, endDate: Date) => {
   const minutes = Math.ceil(seconds / 60);
   const hours = minutes / 60;
   const days = hours / 24;
-  
+
   return {
     milliseconds,
     seconds,
     minutes,
     hours,
-    days
-  }
-}
+    days,
+  };
+};

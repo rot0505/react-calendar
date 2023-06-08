@@ -8,11 +8,9 @@ interface IGetCalendarDaysOfYearParams {
 
 export const getCalendarDaysOfYear = ({
   year,
-  firstWeekDayNumber = 2
+  firstWeekDayNumber = 2,
 }: IGetCalendarDaysOfYearParams): IMonthDay[][] => {
-  return (
-    Array.from({ length: 12 }).map((_, i) => (
-      getCalendarDaysOfMonth({ year, monthIndex: i, firstWeekDayNumber, totalDays: 42 })
-    ))
-  )
-}
+  return Array.from({ length: 12 }).map((_, i) =>
+    getCalendarDaysOfMonth({ year, monthIndex: i, firstWeekDayNumber, totalDays: 42 })
+  );
+};

@@ -4,7 +4,7 @@ import TextField from "../../TextField";
 import { IFieldProps } from "../../types";
 import { useThrottle } from "hooks";
 import { getOptionIndx, parseTimeString } from "../helpers";
-import styles from './TimeInput.module.scss';
+import styles from "./TimeInput.module.scss";
 
 interface ITimeInputProps extends IFieldProps {
   timeValue: string;
@@ -32,9 +32,8 @@ const TimeInput: React.FC<ITimeInputProps> = ({
   openOptions,
   closeOptions,
   selectTime,
-  onFocus
+  onFocus,
 }) => {
-
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,26 +42,26 @@ const TimeInput: React.FC<ITimeInputProps> = ({
 
     setTimeValue(e.target.value);
     setSelectedOptionId(optionIndx);
-  }
+  };
 
   const parseTimeValue = () => {
     const { time } = parseTimeString(timeValue);
     selectTime(time);
     closeOptions();
-  }
+  };
 
-  const changeDateByDirection = (direction: 'up' | 'down') => {
+  const changeDateByDirection = (direction: "up" | "down") => {
     let newIndx = 0;
 
-    if (direction === 'down') {
+    if (direction === "down") {
       newIndx = Number.isInteger(selectedOptionId)
         ? (selectedOptionId + 1) % times.length
         : Math.ceil(selectedOptionId);
     }
 
-    if (direction === 'up') {
+    if (direction === "up") {
       if (Number.isInteger(selectedOptionId)) {
-        newIndx = (selectedOptionId - 1) >= 0 ? (selectedOptionId - 1) : times.length - 1;
+        newIndx = selectedOptionId - 1 >= 0 ? selectedOptionId - 1 : times.length - 1;
       } else {
         newIndx = Math.floor(selectedOptionId);
       }
@@ -71,26 +70,26 @@ const TimeInput: React.FC<ITimeInputProps> = ({
     const time = `${hours}:${mins}`;
     selectTime(time);
     scrollToOption(newIndx);
-  }
+  };
 
   const onKeyDown = useThrottle((e: KeyboardEvent<HTMLInputElement>) => {
     switch (e.key) {
-      case 'Enter': {
+      case "Enter": {
         inputRef.current!.blur();
         break;
       }
-      case 'ArrowDown': {
+      case "ArrowDown": {
         e.preventDefault();
-        changeDateByDirection('down');
+        changeDateByDirection("down");
         break;
       }
-      case 'ArrowUp': {
+      case "ArrowUp": {
         e.preventDefault();
-        changeDateByDirection('up');
+        changeDateByDirection("up");
         break;
       }
     }
-  }, keyboardDelay)
+  }, keyboardDelay);
 
   return (
     <TextField
@@ -107,6 +106,6 @@ const TimeInput: React.FC<ITimeInputProps> = ({
       fullWidth
     />
   );
-}
+};
 
 export default TimeInput;

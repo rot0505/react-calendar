@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { IMonthDay, TMonth } from 'types/date';
-import { IEvent } from 'types/event';
-import Week from '../Week';
-import styles from './Month.module.scss';
+import { IMonthDay, TMonth } from "types/date";
+import { IEvent } from "types/event";
+import Week from "../Week";
+import styles from "./Month.module.scss";
 
 interface IMonthProps {
   calendarDaysOfMonth: IMonthDay[];
@@ -12,16 +12,10 @@ interface IMonthProps {
   longEvents: IEvent[];
 }
 
-const Month: React.FC<IMonthProps> = ({
-  calendarDaysOfMonth,
-  selectedMonth,
-  shortEvents,
-  longEvents
-}) => {
-  const countRows = (calendarDaysOfMonth.length / 7);
+const Month: React.FC<IMonthProps> = ({ calendarDaysOfMonth, selectedMonth, shortEvents, longEvents }) => {
+  const countRows = calendarDaysOfMonth.length / 7;
 
-  const weeksDays = Array.from({ length: countRows })
-    .map((_, i) => calendarDaysOfMonth.slice(i * 7, (i + 1) * 7))
+  const weeksDays = Array.from({ length: countRows }).map((_, i) => calendarDaysOfMonth.slice(i * 7, (i + 1) * 7));
 
   return (
     <div className={styles.calendar_month}>
@@ -39,6 +33,6 @@ const Month: React.FC<IMonthProps> = ({
       })}
     </div>
   );
-}
+};
 
 export default Month;

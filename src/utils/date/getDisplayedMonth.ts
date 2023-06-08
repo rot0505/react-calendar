@@ -1,7 +1,7 @@
 import { createDate } from "./createDate";
 import { getWeekStartDate } from "./getWeekStartDate";
 
-export const getDisplayedMonth = (date: Date, locale = 'default') => {
+export const getDisplayedMonth = (date: Date, locale = "default") => {
   const weekStart = createDate({ date: getWeekStartDate(date), locale });
   const weekEnd = createDate({ date: new Date(weekStart.year, weekStart.monthIndex, weekStart.dayNumber + 6), locale });
 

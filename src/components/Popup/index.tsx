@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef } from "react";
 
-import styles from './Popup.module.scss';
-import { useActions, useClickOutside, useModal, usePopup, useTypedSelector, useWindowSize } from 'hooks';
-import { IEvent } from 'types/event';
+import styles from "./Popup.module.scss";
+import { useActions, useClickOutside, useModal, usePopup, useTypedSelector, useWindowSize } from "hooks";
+import { IEvent } from "types/event";
 
 interface IPopupProps {
   x: number;
@@ -39,9 +39,9 @@ const Popup: React.FC<IPopupProps> = ({ x, y, eventId }) => {
 
     return {
       left,
-      top
-    }
-  }
+      top,
+    };
+  };
 
   const handleClosePopup = () => closePopup();
 
@@ -50,41 +50,27 @@ const Popup: React.FC<IPopupProps> = ({ x, y, eventId }) => {
   const onDelete = () => {
     deleteEvent(eventId);
     closePopup();
-  }
+  };
 
   const handleOpenEditEventModal = () => {
-    const eventData = events.find(event => event.id === eventId) as IEvent;
+    const eventData = events.find((event) => event.id === eventId) as IEvent;
     openModalEdit({ eventData, eventId: eventId });
     closePopup();
-  }
+  };
 
   return (
-    <div
-      className={styles.popup}
-      ref={popupRef}
-      style={getPopupStyle()}
-    >
-      <button
-        className={styles.btn_action}
-        onClick={onDelete}
-      >
+    <div className={styles.popup} ref={popupRef} style={getPopupStyle()}>
+      <button className={styles.btn_action} onClick={onDelete}>
         <span className="delete-event-btn_icon">
           <i className="fas fa-trash"></i>
         </span>
-        <span className={styles.btn_action_text}>
-          Delete
-        </span>
+        <span className={styles.btn_action_text}>Delete</span>
       </button>
-      <button
-        className={styles.btn_action}
-        onClick={handleOpenEditEventModal}
-      >
+      <button className={styles.btn_action} onClick={handleOpenEditEventModal}>
         <span className="delete-event-btn_icon">
           <i className="fas fa-edit"></i>
         </span>
-        <span className={styles.btn_action_text}>
-          Edit
-        </span>
+        <span className={styles.btn_action_text}>Edit</span>
       </button>
     </div>
   );

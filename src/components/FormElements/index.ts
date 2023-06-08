@@ -3,9 +3,4 @@ import DatePicker from "./DatePicker";
 import TextField from "./TextField";
 import TimePicker from "./TimePicker";
 
-export {
-  ColorPicker,
-  DatePicker,
-  TextField,
-  TimePicker
-};
+export { ColorPicker, DatePicker, TextField, TimePicker };

@@ -2,24 +2,21 @@ import React from "react";
 
 import { shmoment } from "utils/date";
 import { getMapEventValues } from "../helpers";
-import { IModalCreateEventOptions } from 'store/modals/types';
+import { IModalCreateEventOptions } from "store/modals/types";
 import ModalFormEvent from "../ModalFormEvent";
 import { useActions, useModal } from "hooks";
 
-const ModalCreateEvent: React.FC<IModalCreateEventOptions> = ({
-  selectedDate,
-  type = 'event'
-}) => {
+const ModalCreateEvent: React.FC<IModalCreateEventOptions> = ({ selectedDate, type = "event" }) => {
   const { createEvent } = useActions();
   const { closeModalCreate } = useModal();
-  const endDate = shmoment(selectedDate).add('hours', 1).result();
+  const endDate = shmoment(selectedDate).add("hours", 1).result();
 
   const defaultEventValues = getMapEventValues({
-    title: '',
-    description: '',
+    title: "",
+    description: "",
     startDate: selectedDate,
     endDate,
-    type
+    type,
   });
 
   return (
@@ -31,7 +28,7 @@ const ModalCreateEvent: React.FC<IModalCreateEventOptions> = ({
       // @ts-ignore ts-ignore
       handlerSubmit={createEvent}
     />
-  )
-}
+  );
+};
 
 export default ModalCreateEvent;

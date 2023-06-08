@@ -6,10 +6,7 @@ import { TPartialEvent } from "types/event";
 import { useActions, useModal } from "hooks/index";
 import { IModalEditEventOptions } from "store/modals/types";
 
-const ModalEditEvent: React.FC<IModalEditEventOptions> = ({
-  eventData,
-  eventId
-}) => {
+const ModalEditEvent: React.FC<IModalEditEventOptions> = ({ eventData, eventId }) => {
   const { updateEvent } = useActions();
   const { closeModalEdit } = useModal();
   const startDate = new Date(eventData.start!);
@@ -21,7 +18,7 @@ const ModalEditEvent: React.FC<IModalEditEventOptions> = ({
     startDate,
     endDate,
     type: eventData.type!,
-    color: eventData.color
+    color: eventData.color,
   });
 
   const onUpdateEvent = (event: TPartialEvent) => updateEvent({ eventId: eventId, event });
@@ -34,7 +31,7 @@ const ModalEditEvent: React.FC<IModalEditEventOptions> = ({
       handlerSubmit={onUpdateEvent}
       closeModal={closeModalEdit}
     />
-  )
-}
+  );
+};
 
 export default ModalEditEvent;

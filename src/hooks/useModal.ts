@@ -3,14 +3,8 @@ import { useTypedSelector } from "./useTypedSelector";
 
 export const useModal = () => {
   const modalsData = useTypedSelector(({ modals }) => modals);
-  const {
-    openModalCreate,
-    openModalDayInfo,
-    openModalEdit,
-    closeModalCreate,
-    closeModalDayInfo,
-    closeModalEdit
-  } = useActions();
+  const { openModalCreate, openModalDayInfo, openModalEdit, closeModalCreate, closeModalDayInfo, closeModalEdit } =
+    useActions();
 
   return {
     ...modalsData,
@@ -19,6 +13,6 @@ export const useModal = () => {
     openModalEdit,
     closeModalCreate,
     closeModalDayInfo,
-    closeModalEdit
+    closeModalEdit,
   };
-}
+};

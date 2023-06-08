@@ -13,4 +13,4 @@ export interface IEvent extends IEventCreate {
 
 export type TPartialEvent = Partial<IEvent>;
 
-export type TEventTypes = 'event' | 'long-event';
+export type TEventTypes = "event" | "long-event";

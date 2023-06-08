@@ -1,12 +1,12 @@
-import React, { WheelEvent } from 'react';
+import React, { WheelEvent } from "react";
 
-import { useTypedSelector } from 'hooks/index';
-import { useThrottle } from 'hooks/useThrottle';
-import { IDirections, IMonthDay, IWeekDay, TMonth } from 'types/date';
-import { getEventsInterval, getLongEvents, getShortEvents } from 'utils/helpers';
-import Month from './Month';
-import Navigation from './Navigation';
-import styles from './CalendarMonth.module.scss';
+import { useTypedSelector } from "hooks/index";
+import { useThrottle } from "hooks/useThrottle";
+import { IDirections, IMonthDay, IWeekDay, TMonth } from "types/date";
+import { getEventsInterval, getLongEvents, getShortEvents } from "utils/helpers";
+import Month from "./Month";
+import Navigation from "./Navigation";
+import styles from "./CalendarMonth.module.scss";
 
 interface CalendarPropsIMont {
   weekDaysNames: IWeekDay[];
@@ -19,7 +19,7 @@ const CalendarMonth: React.FC<CalendarPropsIMont> = ({
   weekDaysNames,
   calendarDaysOfMonth,
   selectedMonth,
-  onClickArrow
+  onClickArrow,
 }) => {
   const { events } = useTypedSelector(({ events }) => events);
 
@@ -29,15 +29,12 @@ const CalendarMonth: React.FC<CalendarPropsIMont> = ({
 
   const changeMonth = useThrottle((e: WheelEvent<HTMLElement>) => {
     const { deltaY } = e;
-    const direction = deltaY > 0 ? 'right' : 'left';
+    const direction = deltaY > 0 ? "right" : "left";
     onClickArrow(direction);
   }, 300);
 
   return (
-    <div
-      className={styles.calendar_container}
-      onWheel={changeMonth}
-    >
+    <div className={styles.calendar_container} onWheel={changeMonth}>
       <Navigation weekDaysNames={weekDaysNames} />
       <div className="calendar_body">
         <div className={styles.calendar_content}>
@@ -51,6 +48,6 @@ const CalendarMonth: React.FC<CalendarPropsIMont> = ({
       </div>
     </div>
   );
-}
+};
 
 export default CalendarMonth;

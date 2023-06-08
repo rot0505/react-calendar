@@ -5,7 +5,7 @@ import { IMonthDay } from "types/date";
 import LongEvent from "components/LongEvent";
 import { useModal } from "hooks/useModal";
 import { getStyledForLongEvent } from "utils/helpers";
-import styles from './LongEventSlot.module.scss';
+import styles from "./LongEventSlot.module.scss";
 
 interface ILongEventSlotProps {
   isEventsEmpty: boolean;
@@ -22,13 +22,13 @@ const LongEventSlot: React.FC<ILongEventSlotProps> = ({
   weekDays,
   day,
   dayEventsPositionY,
-  slotHeight
+  slotHeight,
 }) => {
   const { openModalCreate } = useModal();
 
   const handleOpenmodalCreateEvent = () => {
-    openModalCreate({ selectedDate: day.date, type: 'long-event' })
-  }
+    openModalCreate({ selectedDate: day.date, type: "long-event" });
+  };
 
   const slotStyle = { height: `${slotHeight}px` };
 
@@ -54,10 +54,10 @@ const LongEventSlot: React.FC<ILongEventSlotProps> = ({
             isMovingToNext={isMovingToNext}
             isMovingFromPrev={isMovingFromPrev}
           />
-        )
+        );
       })}
     </div>
   );
-}
+};
 
 export default LongEventSlot;

@@ -2,7 +2,7 @@ import React from "react";
 
 import { IDirections, IModes } from "types/date";
 import Year from "../Year";
-import styles from './Years.module.scss';
+import styles from "./Years.module.scss";
 
 interface YearsProps {
   selectedYearsInterval: number[];
@@ -17,41 +17,29 @@ const Years: React.FC<YearsProps> = ({
   selectedYear,
   setSelectedYear,
   setMode,
-  onClickArrow
+  onClickArrow,
 }) => {
   const handleSelectPrevYearsInterval = () => {
-    onClickArrow('left');
+    onClickArrow("left");
     setSelectedYear(selectedYearsInterval[0] - 1);
-    setMode('months');
-  }
+    setMode("months");
+  };
 
   const handleSelectNextYearsInterval = () => {
-    onClickArrow('right');
+    onClickArrow("right");
     setSelectedYear(selectedYearsInterval[selectedYearsInterval.length - 1] + 1);
-    setMode('months');
-  }
+    setMode("months");
+  };
 
   return (
     <div className={styles.years_container}>
-      <div
-        className={styles.year_additional}
-        onClick={handleSelectPrevYearsInterval}
-      >
+      <div className={styles.year_additional} onClick={handleSelectPrevYearsInterval}>
         {selectedYearsInterval[0] - 1}
       </div>
       {selectedYearsInterval.map((year) => (
-        <Year
-          key={year}
-          year={year}
-          selectedYear={selectedYear}
-          setSelectedYear={setSelectedYear}
-          setMode={setMode}
-        />
+        <Year key={year} year={year} selectedYear={selectedYear} setSelectedYear={setSelectedYear} setMode={setMode} />
       ))}
-      <div
-        className={styles.year_additional}
-        onClick={handleSelectNextYearsInterval}
-      >
+      <div className={styles.year_additional} onClick={handleSelectNextYearsInterval}>
         {selectedYearsInterval[selectedYearsInterval.length - 1] + 1}
       </div>
     </div>

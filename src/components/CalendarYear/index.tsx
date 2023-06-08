@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { IMonth, IMonthDay, IWeekDay, TDate, TMonth } from 'types/date';
-import Month from './Month';
-import styles from './CalendarYear.module.scss';
+import { IMonth, IMonthDay, IWeekDay, TDate, TMonth } from "types/date";
+import Month from "./Month";
+import styles from "./CalendarYear.module.scss";
 
 interface CalendarPropsYear {
   calendarDaysOfYear: IMonthDay[][];
@@ -19,9 +19,8 @@ const CalendarYear: React.FC<CalendarPropsYear> = ({
   monthsNames,
   weekDaysNames,
   selectedDay,
-  onChangeState
+  onChangeState,
 }) => {
-
   return (
     <div className="calendar_body">
       <div className={styles.calendar_year_container}>
@@ -39,6 +38,6 @@ const CalendarYear: React.FC<CalendarPropsYear> = ({
       </div>
     </div>
   );
-}
+};
 
 export default CalendarYear;

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IModes } from "types/date";
-import styles from './Year.module.scss';
+import styles from "./Year.module.scss";
 
 interface YearProps {
   year: number;
@@ -10,19 +10,14 @@ interface YearProps {
   setMode: (mode: IModes) => void;
 }
 
-const Year: React.FC<YearProps> = ({
-  year,
-  selectedYear,
-  setSelectedYear,
-  setMode
-}) => {
+const Year: React.FC<YearProps> = ({ year, selectedYear, setSelectedYear, setMode }) => {
   const isCurrentYear = new Date().getFullYear() === year;
   const isSelectedYear = year === selectedYear;
 
   const handleSelectYear = () => {
     setSelectedYear(year);
-    setMode('months');
-  }
+    setMode("months");
+  };
 
   return (
     <div

@@ -8,4 +8,4 @@ export const getSortedEvents = (events: IEvent[]) => {
   });
 
   return sortedEvents;
-}
+};

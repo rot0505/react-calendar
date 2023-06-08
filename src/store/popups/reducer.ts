@@ -1,17 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { IPopupState } from './types';
-import {
-  openPopup,
-  closePopup
-} from './actions';
+import { createSlice } from "@reduxjs/toolkit";
+import { IPopupState } from "./types";
+import { openPopup, closePopup } from "./actions";
 
 const initialState: IPopupState = {
   isOpenPopup: false,
-  popupOptions: null
-}
+  popupOptions: null,
+};
 
 export const popupsSlice = createSlice({
-  name: 'popups',
+  name: "popups",
   initialState,
   extraReducers: (builder) => {
     builder
@@ -22,9 +19,9 @@ export const popupsSlice = createSlice({
       .addCase(closePopup, (state) => {
         state.isOpenPopup = false;
         state.popupOptions = null;
-      })
+      });
   },
-  reducers: {}
-})
+  reducers: {},
+});
 
-export const { reducer } = popupsSlice
+export const { reducer } = popupsSlice;

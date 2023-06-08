@@ -1,13 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { IModalsState } from './types';
+import { createSlice } from "@reduxjs/toolkit";
+import { IModalsState } from "./types";
 import {
   openModalCreate,
   openModalDayInfo,
   openModalEdit,
   closeModalCreate,
   closeModalDayInfo,
-  closeModalEdit
-} from './actions';
+  closeModalEdit,
+} from "./actions";
 
 const initialState: IModalsState = {
   isOpenModalEditEvent: false,
@@ -15,11 +15,11 @@ const initialState: IModalsState = {
   isOpenModalDayInfoEvents: false,
   modalCreateEventOptions: null,
   modalEditEventOptions: null,
-  selectedDate: null
-}
+  selectedDate: null,
+};
 
 export const modalsSlice = createSlice({
-  name: 'modals',
+  name: "modals",
   initialState,
   extraReducers: (builder) => {
     builder
@@ -46,9 +46,9 @@ export const modalsSlice = createSlice({
       .addCase(closeModalEdit, (state) => {
         state.isOpenModalEditEvent = false;
         state.modalEditEventOptions = null;
-      })
+      });
   },
-  reducers: {}
-})
+  reducers: {},
+});
 
-export const { reducer } = modalsSlice
+export const { reducer } = modalsSlice;

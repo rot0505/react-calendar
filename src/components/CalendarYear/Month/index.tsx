@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { IMonth, IMonthDay, IWeekDay, TDate } from 'types/date';
-import Day from '../Day';
-import styles from './Month.module.scss';
+import { IMonth, IMonthDay, IWeekDay, TDate } from "types/date";
+import Day from "../Day";
+import styles from "./Month.module.scss";
 
 interface IMonthProps {
   calendarDaysOfMonth: IMonthDay[];
@@ -19,21 +19,18 @@ const Month: React.FC<IMonthProps> = ({
   weekDaysNames,
   monthIndex,
   selectedDay,
-  onChangeState
+  onChangeState,
 }) => {
   return (
     <div className={styles.month}>
       <div className={styles.month_title}>
-        <span className={styles.month_title_name}>
-          {month.month}
-        </span>
+        <span className={styles.month_title_name}>{month.month}</span>
       </div>
       <div className={styles.month_header}>
-        {weekDaysNames.map(weekDay => (
-          <div
-            key={weekDay.day}
-            className={styles.month_header_day}
-          >{weekDay.dayShort}</div>
+        {weekDaysNames.map((weekDay) => (
+          <div key={weekDay.day} className={styles.month_header_day}>
+            {weekDay.dayShort}
+          </div>
         ))}
       </div>
       <div className={styles.month_body}>
@@ -49,6 +46,6 @@ const Month: React.FC<IMonthProps> = ({
       </div>
     </div>
   );
-}
+};
 
 export default Month;

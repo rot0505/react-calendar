@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import { useCalendar } from 'hooks';
-import Header from 'components/Header';
-import CalendarWeek from 'components/CalendarWeek';
-import CalendarYear from 'components/CalendarYear';
-import CalendarMonth from 'components/CalendarMonth';
-import './Calendar.scss';
+import { useCalendar } from "hooks";
+import Header from "components/Header";
+import CalendarWeek from "components/CalendarWeek";
+import CalendarYear from "components/CalendarYear";
+import CalendarMonth from "components/CalendarMonth";
+import "./Calendar.scss";
 
-const Calendar: React.FC = ({ }) => {
+const Calendar: React.FC = ({}) => {
   const { state, functions } = useCalendar({ selectedDate: new Date() });
 
   return (
@@ -20,7 +20,7 @@ const Calendar: React.FC = ({ }) => {
         selectedDay={state.selectedDay}
       />
       <section className="calendar">
-        {state.mode === 'year' && (
+        {state.mode === "year" && (
           <CalendarYear
             selectedDay={state.selectedDay}
             selectedMonth={state.selectedMonth}
@@ -31,7 +31,7 @@ const Calendar: React.FC = ({ }) => {
           />
         )}
 
-        {state.mode === 'month' && (
+        {state.mode === "month" && (
           <CalendarMonth
             weekDaysNames={state.weekDaysNames}
             calendarDaysOfMonth={state.calendarDaysOfMonth}
@@ -40,16 +40,10 @@ const Calendar: React.FC = ({ }) => {
           />
         )}
 
-        {state.mode === 'week' && (
-          <CalendarWeek
-            weekDays={state.weekDays}
-            weekDaysNames={state.weekDaysNames}
-          />
-        )}
-
+        {state.mode === "week" && <CalendarWeek weekDays={state.weekDays} weekDaysNames={state.weekDaysNames} />}
       </section>
     </>
   );
-}
+};
 
 export default Calendar;

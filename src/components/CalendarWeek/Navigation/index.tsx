@@ -1,19 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import { checkIsToday, checkIsPast } from 'utils/date';
-import { IMonthDay, IWeekDay } from 'types/date';
-import { useModal } from 'hooks/useModal';
-import styles from './Navigation.module.scss';
+import { checkIsToday, checkIsPast } from "utils/date";
+import { IMonthDay, IWeekDay } from "types/date";
+import { useModal } from "hooks/useModal";
+import styles from "./Navigation.module.scss";
 
 interface INavigationProps {
   weekDays: IMonthDay[];
   weekDaysNames: IWeekDay[];
 }
 
-const Navigation: React.FC<INavigationProps> = ({
-  weekDays,
-  weekDaysNames
-}) => {
+const Navigation: React.FC<INavigationProps> = ({ weekDays, weekDaysNames }) => {
   const { openModalCreate } = useModal();
   return (
     <header className={styles.week_header}>
@@ -28,18 +25,20 @@ const Navigation: React.FC<INavigationProps> = ({
           <div
             className={styles.day_label}
             key={uniqKey}
-            onClick={() => openModalCreate({ selectedDate: dayDate.date, type: 'long-event' })}
+            onClick={() => openModalCreate({ selectedDate: dayDate.date, type: "long-event" })}
           >
+            <span className={`${styles.day_label_name} ${isTodayDay && styles.day_label_name_today}`}>
+              {weekDaysNames[i].dayShort}
+            </span>
             <span
-              className={`${styles.day_label_name} ${isTodayDay && styles.day_label_name_today}`}
+              className={`${styles.day_label_number} ${isTodayDay && styles.day_label_number_today} ${
+                isPastDay && styles.day_label_number_past
+              }`}
             >
-              {weekDaysNames[i].dayShort}</span>
-            <span
-              className={`${styles.day_label_number} ${isTodayDay && styles.day_label_number_today} ${isPastDay && styles.day_label_number_past}`}
-            >
-              {dayNumber}</span>
+              {dayNumber}
+            </span>
           </div>
-        )
+        );
       })}
     </header>
   );

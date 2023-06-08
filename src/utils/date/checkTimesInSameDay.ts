@@ -1,7 +1,7 @@
 export const checkTimesInSameDay = (timeStart: string, timeEnd: string) => {
-  const [startHours, startMins] = timeStart.split(':');
-  const [endHours, endMins] = timeEnd.split(':');
-  
+  const [startHours, startMins] = timeStart.split(":");
+  const [endHours, endMins] = timeEnd.split(":");
+
   if (+startHours > +endHours) {
     return false;
   }
@@ -10,4 +10,4 @@ export const checkTimesInSameDay = (timeStart: string, timeEnd: string) => {
   }
 
   return true;
-}
+};

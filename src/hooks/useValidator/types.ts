@@ -1,4 +1,8 @@
-import { validationMethodsWithDates, validationMethodsWithoutParams, validationMethodsWithParams } from "utils/validations";
+import {
+  validationMethodsWithDates,
+  validationMethodsWithoutParams,
+  validationMethodsWithParams,
+} from "utils/validations";
 
 export interface IValidatorData {
   [k: string]: string | number | boolean | Date;
@@ -29,4 +33,4 @@ export interface IValidationResponse {
 
 export type IErrorsMessages = {
   [k: string]: string;
-}
+};

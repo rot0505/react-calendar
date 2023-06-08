@@ -4,17 +4,14 @@ import { IMonthDay } from "types/date";
 import { IEvent } from "types/event";
 import { getPositionYForWeekEvents, getSortedWeekEvents } from "utils/helpers";
 import LongEventSlot from "../LongEventSlot";
-import styles from './LongEvents.module.scss';
+import styles from "./LongEvents.module.scss";
 
 interface ILongEventsProps {
   weekDays: IMonthDay[];
   events: IEvent[];
 }
 
-const LongEvents: React.FC<ILongEventsProps> = ({
-  weekDays,
-  events
-}) => {
+const LongEvents: React.FC<ILongEventsProps> = ({ weekDays, events }) => {
   const isEventsEmpty = events.length === 0;
 
   const { sortedWeekEvents, maxEventsInWeek } = getSortedWeekEvents(weekDays, events);
@@ -26,14 +23,11 @@ const LongEvents: React.FC<ILongEventsProps> = ({
   const longEventsStyle = {
     height: `${slotsHeight}px`,
     paddingRight: `${slotsHeight <= 96 ? 10 : 0}px`,
-    overflow: slotsHeight === 0 ? 'inherit' : 'auto'
-  }
+    overflow: slotsHeight === 0 ? "inherit" : "auto",
+  };
 
   return (
-    <div
-      className={styles.long_events}
-      style={longEventsStyle}
-    >
+    <div className={styles.long_events} style={longEventsStyle}>
       {sortedWeekEvents.map((dayEvents, indx) => {
         return (
           <LongEventSlot
@@ -45,10 +39,10 @@ const LongEvents: React.FC<ILongEventsProps> = ({
             dayEventsPositionY={weekEventsPositionY[indx]}
             slotHeight={slotsHeight}
           />
-        )
+        );
       })}
     </div>
   );
-}
+};
 
 export default LongEvents;

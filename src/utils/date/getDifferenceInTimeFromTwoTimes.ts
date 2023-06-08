@@ -9,11 +9,11 @@ export const getDifferenceInTimeFromTwoTimes = (timeStart: string, timeEnd: stri
   let endDate = getDateTime(startDate, timeEnd);
 
   if (!isTimesInSameDay) {
-    const nextDay = shmoment(startDate).add('days', 1).result();
+    const nextDay = shmoment(startDate).add("days", 1).result();
     endDate = getDateTime(nextDay, timeEnd);
   }
-  
+
   const { hours, minutes } = getDifferenceOfTwoDates(startDate, endDate);
 
   return { hours, minutes };
-}
+};

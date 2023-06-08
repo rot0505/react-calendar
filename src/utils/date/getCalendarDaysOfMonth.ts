@@ -13,7 +13,7 @@ interface GetCalendarDaysOfMonthParams {
 
 export const getCalendarDaysOfMonth = (params: GetCalendarDaysOfMonthParams): IMonthDay[] => {
   const { year, monthIndex, firstWeekDayNumber, totalDays } = params;
-  const locale = params?.locale ?? 'default';
+  const locale = params?.locale ?? "default";
   const monthNumberOfDays = getMonthNumberOfDays(monthIndex, year);
 
   const days = createMonth({ date: new Date(year, monthIndex), locale }).createMonthDays();
@@ -34,27 +34,23 @@ export const getCalendarDaysOfMonth = (params: GetCalendarDaysOfMonthParams): IM
 
   const totalCalendarDays = days.length + numberOfPrevDays + numberOfNextDays;
 
-  const numberRestDays = typeof totalDays === 'number' ? totalDays - totalCalendarDays : 0;
+  const numberRestDays = typeof totalDays === "number" ? totalDays - totalCalendarDays : 0;
 
   const daysFromPrevMonth = generateDaysRange({
     year: firstDay.year,
     monthIndex: firstDay.monthIndex,
     countDays: numberOfPrevDays,
-    dayFrom: firstDay.dayNumber - numberOfPrevDays
+    dayFrom: firstDay.dayNumber - numberOfPrevDays,
   });
 
   const daysFromNextMonth = generateDaysRange({
     year: lastDay.year,
     monthIndex: lastDay.monthIndex,
     countDays: numberOfNextDays + numberRestDays,
-    dayFrom: lastDay.dayNumber + 1
+    dayFrom: lastDay.dayNumber + 1,
   });
 
-  const calendarDaysOfMonth: IMonthDay[] = [
-    ...daysFromPrevMonth,
-    ...days,
-    ...daysFromNextMonth
-  ]
+  const calendarDaysOfMonth: IMonthDay[] = [...daysFromPrevMonth, ...days, ...daysFromNextMonth];
 
   return calendarDaysOfMonth;
-}
+};

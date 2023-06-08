@@ -3,7 +3,7 @@ import React, { MouseEvent } from "react";
 import { usePopup } from "hooks/usePopup";
 import { IEvent } from "types/event";
 import { formatDate } from "utils/date";
-import styles from './LongEvent.module.scss';
+import styles from "./LongEvent.module.scss";
 
 interface ILongEventProps {
   event: IEvent;
@@ -22,14 +22,14 @@ const LongEvent: React.FC<ILongEventProps> = ({
   color,
   isShowEvent,
   isMovingToNext,
-  isMovingFromPrev
+  isMovingFromPrev,
 }) => {
   const { openPopup } = usePopup();
   const eventStyle = {
     width: `calc(${width}% - 2%)`,
     top: `${top}px`,
     opacity: isShowEvent ? 1 : 0,
-    zIndex: isShowEvent ? 1 : -1
+    zIndex: isShowEvent ? 1 : -1,
   };
 
   const eventContainerStyle = { background: color };
@@ -42,9 +42,9 @@ const LongEvent: React.FC<ILongEventProps> = ({
     openPopup({
       x: clientX,
       y: clientY,
-      eventId: event.id
+      eventId: event.id,
     });
-  }
+  };
 
   return (
     <div
@@ -52,29 +52,18 @@ const LongEvent: React.FC<ILongEventProps> = ({
       style={eventStyle}
       onClick={handleOpenModal}
     >
-      <div
-        className={styles.event_container}
-        style={eventContainerStyle}
-      >
+      <div className={styles.event_container} style={eventContainerStyle}>
         {event.title}
-        {event.type === 'event' && (
-          `, ${formatDate(new Date(event.start), 'hh:mm')}`
-        )}
+        {event.type === "event" && `, ${formatDate(new Date(event.start), "hh:mm")}`}
         {isMovingFromPrev && (
-          <div
-            className={`${styles.event_arrow} ${styles.event_arrow_left}`}
-            style={arrowLeftStyle}
-          ></div>
+          <div className={`${styles.event_arrow} ${styles.event_arrow_left}`} style={arrowLeftStyle}></div>
         )}
         {isMovingToNext && (
-          <div
-            className={`${styles.event_arrow} ${styles.event_arrow_right}`}
-            style={arrowRightStyle}
-          ></div>
+          <div className={`${styles.event_arrow} ${styles.event_arrow_right}`} style={arrowRightStyle}></div>
         )}
       </div>
     </div>
   );
-}
+};
 
 export default LongEvent;
